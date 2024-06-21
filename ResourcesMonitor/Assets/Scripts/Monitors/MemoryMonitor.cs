@@ -22,7 +22,14 @@ internal class MemoryMonitor : ResourceMonitor
 
         for (int i = 0; i < _startedProfilerRecorders.Length; i++)
         {
-            _stringBuilder.AppendJoin(string.Empty, "\r\n", _startedProfilerRecorders[i].StatName, ": ", ToMB(_startedProfilerRecorders[i].ProfilerRecorder.LastValue), " MB");
+            _stringBuilder.AppendJoin(
+                string.Empty,
+                "\r\n",
+                _startedProfilerRecorders[i].StatName,
+                ": ",
+                ToMB(_startedProfilerRecorders[i].ProfilerRecorder.LastValue),
+                " MB"
+                );
         }
 
         return _stringBuilder.ToString();

@@ -7,9 +7,6 @@ internal class SettingsMonitor : ResourceMonitor
     private string _defaultShaderChunkCount;
     private string _defaultShaderChunkSizeInMB;
 
-    private int _currentQualityLevel;
-    private string _currentQualityLevelName;
-
     internal override string GetResourceLog()
     {
         return $@"Settings:
@@ -20,7 +17,7 @@ QualitySettings.vSyncCount: {QualitySettings.vSyncCount}
 Application.targetFrameRate: {Application.targetFrameRate}
 DefaultShaderChunkCount: {_defaultShaderChunkCount}
 DefaultShaderChunkSizeInMB: {_defaultShaderChunkSizeInMB}
-QualityLevel: {_currentQualityLevel} - {_currentQualityLevelName}";
+QualityLevel: {QualitySettings.GetQualityLevel()} - {QualitySettings.names[QualitySettings.GetQualityLevel()]}";
     }
 
     private void Awake()
@@ -35,8 +32,5 @@ QualityLevel: {_currentQualityLevel} - {_currentQualityLevelName}";
         _defaultShaderChunkCount = "n/a";
         _defaultShaderChunkSizeInMB = "n/a";
 #endif
-
-        _currentQualityLevel = QualitySettings.GetQualityLevel();
-        _currentQualityLevelName = QualitySettings.names[QualitySettings.GetQualityLevel()];
     }
 }

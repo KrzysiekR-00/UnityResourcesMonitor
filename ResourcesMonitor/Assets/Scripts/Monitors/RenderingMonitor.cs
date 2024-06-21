@@ -14,7 +14,13 @@ internal class RenderingMonitor : ResourceMonitor
 
         for (int i = 0; i < _startedProfilerRecorders.Length; i++)
         {
-            _stringBuilder.AppendJoin(string.Empty, "\r\n", _startedProfilerRecorders[i].StatName, ": ", _startedProfilerRecorders[i].ProfilerRecorder.LastValue);
+            _stringBuilder.AppendJoin(
+                string.Empty,
+                "\r\n",
+                _startedProfilerRecorders[i].StatName,
+                ": ",
+                _startedProfilerRecorders[i].ProfilerRecorder.LastValue
+                );
         }
 
         return _stringBuilder.ToString();
