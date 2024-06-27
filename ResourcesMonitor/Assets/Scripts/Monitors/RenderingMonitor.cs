@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Unity.Profiling;
 
@@ -16,7 +17,7 @@ internal class RenderingMonitor : ResourceMonitor
         {
             _stringBuilder.AppendJoin(
                 string.Empty,
-                "\r\n",
+                Environment.NewLine,
                 _startedProfilerRecorders[i].StatName,
                 ": ",
                 _startedProfilerRecorders[i].ProfilerRecorder.LastValue

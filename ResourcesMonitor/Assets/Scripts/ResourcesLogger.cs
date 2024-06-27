@@ -25,7 +25,7 @@ public class ResourcesLogger : MonoBehaviour
                 logs[i] = ResourceMonitors[i].GetResourceLog();
             }
 
-            LogUpdated.Invoke(string.Join("\r\n\r\n", logs));
+            LogUpdated.Invoke(string.Join(Environment.NewLine + Environment.NewLine, logs));
 
             _lastUpdate = Time.realtimeSinceStartup;
         }

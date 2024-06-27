@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Unity.Profiling;
 using UnityEngine.Profiling;
@@ -12,19 +13,26 @@ internal class MemoryMonitor : ResourceMonitor
     {
         _stringBuilder.Clear();
         _stringBuilder.Append("Memory:");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nTotal reserved: ", ToMB(Profiler.GetTotalReservedMemoryLong()), " MB");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nAllocated: ", ToMB(Profiler.GetTotalAllocatedMemoryLong()), " MB");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nUnused reserved: ", ToMB(Profiler.GetTotalUnusedReservedMemoryLong()), " MB");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nMono heap: ", ToMB(Profiler.GetMonoHeapSizeLong()), " MB");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nMono used: ", ToMB(Profiler.GetMonoUsedSizeLong()), " MB");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nTemp allocators: ", ToMB(Profiler.GetTempAllocatorSize()), " MB");
-        _stringBuilder.AppendJoin(string.Empty, "\r\nGraphics driver: ", ToMB(Profiler.GetAllocatedMemoryForGraphicsDriver()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Total reserved: ", ToMB(Profiler.GetTotalReservedMemoryLong()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Allocated: ", ToMB(Profiler.GetTotalAllocatedMemoryLong()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Unused reserved: ", ToMB(Profiler.GetTotalUnusedReservedMemoryLong()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Mono heap: ", ToMB(Profiler.GetMonoHeapSizeLong()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Mono used: ", ToMB(Profiler.GetMonoUsedSizeLong()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Temp allocators: ", ToMB(Profiler.GetTempAllocatorSize()), " MB");
+        _stringBuilder.AppendJoin(string.Empty,
+            Environment.NewLine, "Graphics driver: ", ToMB(Profiler.GetAllocatedMemoryForGraphicsDriver()), " MB");
 
         for (int i = 0; i < _startedProfilerRecorders.Length; i++)
         {
             _stringBuilder.AppendJoin(
                 string.Empty,
-                "\r\n",
+                Environment.NewLine,
                 _startedProfilerRecorders[i].StatName,
                 ": ",
                 ToMB(_startedProfilerRecorders[i].ProfilerRecorder.LastValue),
